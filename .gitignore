@@ -1,0 +1,14 @@
+.DS_Store
+*~.nib
+DerivedData/
+build/
+xcuserdata
+!xcshareddata
+!xcschemes
+
+.swiftpm
+/node_modules
+/tmp
+
+.env
+.env.*
