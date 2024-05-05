@@ -16,6 +16,10 @@
 		EB5B362D2BE664B9003A3735 /* TopMoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5B362C2BE664B9003A3735 /* TopMoviesTests.swift */; };
 		EB5B36372BE664B9003A3735 /* TopMoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5B36362BE664B9003A3735 /* TopMoviesUITests.swift */; };
 		EB5B36392BE664B9003A3735 /* TopMoviesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5B36382BE664B9003A3735 /* TopMoviesUITestsLaunchTests.swift */; };
+		EB5B36472BE66CED003A3735 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5B36462BE66CED003A3735 /* NetworkingManager.swift */; };
+		EB5B36492BE66DB6003A3735 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5B36482BE66DB6003A3735 /* API.swift */; };
+		EB5B364C2BE66E4A003A3735 /* OSLog+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5B364B2BE66E4A003A3735 /* OSLog+Utils.swift */; };
+		EB5B364E2BE7E642003A3735 /* TopMoviesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5B364D2BE7E641003A3735 /* TopMoviesUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		EB5B36322BE664B9003A3735 /* TopMoviesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TopMoviesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB5B36362BE664B9003A3735 /* TopMoviesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMoviesUITests.swift; sourceTree = "<group>"; };
 		EB5B36382BE664B9003A3735 /* TopMoviesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMoviesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		EB5B36462BE66CED003A3735 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		EB5B36482BE66DB6003A3735 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		EB5B364B2BE66E4A003A3735 /* OSLog+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+Utils.swift"; sourceTree = "<group>"; };
+		EB5B364D2BE7E641003A3735 /* TopMoviesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMoviesUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,8 @@
 		EB5B36142BE664B6003A3735 /* TopMovies */ = {
 			isa = PBXGroup;
 			children = (
+				EB5B364A2BE66E31003A3735 /* Utils */,
+				EB5B36452BE66CD9003A3735 /* Networking */,
 				EB5B36152BE664B6003A3735 /* AppDelegate.swift */,
 				EB5B36172BE664B6003A3735 /* SceneDelegate.swift */,
 				EB5B36192BE664B6003A3735 /* ViewController.swift */,
@@ -125,6 +135,24 @@
 				EB5B36382BE664B9003A3735 /* TopMoviesUITestsLaunchTests.swift */,
 			);
 			path = TopMoviesUITests;
+			sourceTree = "<group>";
+		};
+		EB5B36452BE66CD9003A3735 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				EB5B36462BE66CED003A3735 /* NetworkingManager.swift */,
+				EB5B36482BE66DB6003A3735 /* API.swift */,
+				EB5B364D2BE7E641003A3735 /* TopMoviesUseCase.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		EB5B364A2BE66E31003A3735 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				EB5B364B2BE66E4A003A3735 /* OSLog+Utils.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +286,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB5B364E2BE7E642003A3735 /* TopMoviesUseCase.swift in Sources */,
 				EB5B361A2BE664B6003A3735 /* ViewController.swift in Sources */,
 				EB5B36162BE664B6003A3735 /* AppDelegate.swift in Sources */,
 				EB5B36182BE664B6003A3735 /* SceneDelegate.swift in Sources */,
+				EB5B36472BE66CED003A3735 /* NetworkingManager.swift in Sources */,
+				EB5B364C2BE66E4A003A3735 /* OSLog+Utils.swift in Sources */,
+				EB5B36492BE66DB6003A3735 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
