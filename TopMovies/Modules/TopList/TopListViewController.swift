@@ -100,7 +100,7 @@ final class TopListViewController: UIViewController {
             activityIndicatorContainer.heightAnchor.constraint(equalToConstant: Constants.actitivyHeight),
             activityIndicatorContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             activityIndicatorContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            activityIndicatorContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            activityIndicatorContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             activityIndicator.centerXAnchor.constraint(equalTo: activityIndicatorContainer.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: activityIndicatorContainer.centerYAnchor)
         ])
