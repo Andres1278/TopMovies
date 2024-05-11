@@ -7,11 +7,6 @@
 
 import Foundation
 
-enum TopMoviesResponse {
-    case success(response: TopMoviesList?)
-    case failure(Error?)
-}
-
 struct TopMoviesList: Codable {
     let page: Int
     let totalPages: Int
@@ -26,7 +21,7 @@ struct TopMoviesList: Codable {
     }
 }
 
-struct Movie: Codable {
+struct Movie: Codable, Hashable {
     let backdropPath: String
     let genreIds: [Int]
     let id: Int

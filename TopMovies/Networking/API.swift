@@ -15,11 +15,13 @@ enum HTTPMethod: String {
 }
 
 internal typealias HTTPHeaders = [String: String]
+internal typealias HTTPQueryParams = [String: String]
 
 struct API {
     
     let apiKey = "4d58b851c31392bbf03cdf8fed99247c"
-    private static let baseUrl = "https://api.themoviedb.org/3/movie/"
+    private static let baseUrl = "https://api.themoviedb.org/3/"
+    private static let posterBaseURL = "https://image.tmdb.org/t/p/w500"
     let defaultRequestParameters = ["limit": "100"]
     static var defaultHeaders: HTTPHeaders = [
         "accept": "application/json",
@@ -28,22 +30,26 @@ struct API {
 
     enum Endpoint {
         case topRated
-        case movesList
-        case moveDetail(name: String)
+        case movieDetail(id: String)
+        case poster(path: String)
         
         var path: String {
             switch self {
             case .topRated:
-                return  "top_rated"
-            case .movesList:
-                return "/move"
-            case .moveDetail(let name):
-                return  "/move/\(name)"
+                return  "movie/top_rated"
+            case .movieDetail(let id):
+                return  "movie/\(id)"
+            case .poster(let path):
+                return path
             }
         }
     }
     
     static func url(for endpoint: Endpoint) -> String {
         return baseUrl + endpoint.path
+    }
+    
+    static func posterURL(for endPoint: Endpoint) -> String {
+        return posterBaseURL + endPoint.path
     }
 }

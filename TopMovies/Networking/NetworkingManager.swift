@@ -8,17 +8,16 @@
 import Foundation
 import os.log
 
+enum NetworkError: Error {
+    case badURL
+    case noJSONData
+    case JSONDecoder
+    case unauthorized
+    case unknown
+    case invalidService
+}
 
 struct ServiceManger {
-    
-    enum NetworkError: Error {
-        case badURL
-        case noJSONData
-        case JSONDecoder
-        case unauthorized
-        case unknown
-        case invalidService
-    }
     
     typealias Completion<T> = (CompletionResult<T>) -> (Void)
     typealias CompletionResult<T> = Swift.Result<T, Error>
@@ -27,6 +26,7 @@ struct ServiceManger {
         to endpoint: String,
         method: HTTPMethod = .get,
         headers: HTTPHeaders = [:],
+        queryParams: HTTPQueryParams = [:],
         keypath: String? = nil,
         completionHandler: Completion<T>?
     ) {
@@ -36,10 +36,23 @@ struct ServiceManger {
             return
         }
         
-        var request = URLRequest(url: url)
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
+
+        if !queryParams.isEmpty {
+            components.queryItems = queryParams.compactMap { URLQueryItem(name: $0.key, value: $0.value) }
+        }
+
+        guard let finalURL = components.url else {
+            completionHandler?(.failure(NetworkError.badURL))
+            return
+        }
+        
+        var request = URLRequest(url: finalURL)
         request.httpMethod = method.rawValue
         request.timeoutInterval = 10
-        request.allHTTPHeaderFields = headers
+        headers.forEach { header in
+            request.setValue(header.value, forHTTPHeaderField: header.key)
+        }
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             
@@ -57,7 +70,11 @@ struct ServiceManger {
             
             do {
                 let entries = try JSONDecoder().decode(T.self, from: data as Data)
-                completionHandler?(.success(entries))
+//                MARK: Delay implemented just for testing spinners
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    completionHandler?(.success(entries))
+                }
+                
             } catch  {
                 os_log("[ServiceManager] Decoding error:", log: OSLog.network, type: .error, error as CVarArg)
                 completionHandler?(.failure(NetworkError.JSONDecoder))
