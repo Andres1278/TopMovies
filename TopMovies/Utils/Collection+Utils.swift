@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+extension Collection {
+    func safeContains(_ index: Index) -> Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
+}
